@@ -1,9 +1,21 @@
-from authtools import views as at_views
+from django.contrib import auth
 from django.core.urlresolvers import reverse_lazy
+
+from authtools import views as at_views
+
+from . import forms
 
 
 class LoginView(at_views.LoginView):
     template_name = 'accounts/login.html'
+    form_class = forms.AuthForm
+
+    def form_valid(self, form):
+        auth.login(self.request, form.get_user())
+        if form.cleaned_data['remember'] is False:
+            # expires at browser close
+            self.request.session.set_expiry(0)
+        return super().form_valid(form)
 
 
 class LogoutView(at_views.LogoutView):
