@@ -1,3 +1,5 @@
-from django.shortcuts import render
+from authtools.views import LoginView as ATLoginView
 
-# Create your views here.
+
+class LoginView(ATLoginView):
+    template_name = 'accounts/login.html'
