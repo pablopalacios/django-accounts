@@ -1,0 +1,11 @@
+{% load i18n %}
+<h1>User Profile</h1>
+<dl>
+  <dt>{% trans 'name'|capfirst %}</dt>
+  <dd>{{ user.name }}</dd>
+  <dt>{% trans 'email'|capfirst %}</dt>
+  <dd>{{ user.email }}</dd>
+</dl>
+<a href="{% url 'accounts:password_change' %}">
+  Change password
+</a>

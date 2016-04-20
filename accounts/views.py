@@ -1,5 +1,6 @@
 from django.contrib import auth
 from django.core.urlresolvers import reverse_lazy
+from django.views import generic
 
 from authtools import views as at_views
 
@@ -20,6 +21,10 @@ class LoginView(at_views.LoginView):
 
 class LogoutView(at_views.LogoutView):
     url = reverse_lazy('accounts:login')
+
+
+class ProfileView(generic.TemplateView):
+    template_name = 'accounts/profile.html'
 
 
 class PasswordChangeView(at_views.PasswordChangeView):
