@@ -12,10 +12,6 @@ urlpatterns = [
         views.PasswordChangeView.as_view(),
         name='password_change'
     ),
-    url(r'^password-change/done/$',
-        views.PasswordChangeDoneView.as_view(),
-        name='password_change_done'
-    ),
     url(r'^password-reset/$',
         views.PasswordResetView.as_view(),
         name='password_reset'

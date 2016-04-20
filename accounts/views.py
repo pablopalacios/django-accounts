@@ -28,11 +28,8 @@ class ProfileView(generic.TemplateView):
 
 
 class PasswordChangeView(at_views.PasswordChangeView):
-    pass
-
-
-class PasswordChangeDoneView(at_views.PasswordChangeDoneView):
-    pass
+    success_url = reverse_lazy('accounts:profile')
+    template_name = 'accounts/password_change.html'
 
 
 class PasswordResetView(at_views.PasswordResetView):
