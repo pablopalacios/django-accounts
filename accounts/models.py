@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+from authtools.models import AbstractNamedUser
+
+
+class User(AbstractNamedUser):
+    pass
