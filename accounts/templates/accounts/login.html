@@ -2,3 +2,6 @@
   {{ form.as_p }}
   <button type="submit">Login</button>
 </form>
+<a href="{% url 'accounts:password_reset' %}">
+  Recover password
+</a>

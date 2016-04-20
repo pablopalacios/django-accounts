@@ -20,3 +20,28 @@ class LoginView(at_views.LoginView):
 
 class LogoutView(at_views.LogoutView):
     url = reverse_lazy('accounts:login')
+
+
+class PasswordChangeView(at_views.PasswordChangeView):
+    pass
+
+
+class PasswordChangeDoneView(at_views.PasswordChangeDoneView):
+    pass
+
+
+class PasswordResetView(at_views.PasswordResetView):
+    success_url = reverse_lazy('accounts:password_reset_done')
+    email_template_name = 'accounts/password_reset_email.html'
+
+
+class PasswordResetDoneView(at_views.PasswordResetDoneView):
+    pass
+
+
+class PasswordResetConfirmAndLoginView(at_views.PasswordResetConfirmAndLoginView):
+    pass
+
+
+class PasswordResetCompleteView(at_views.PasswordResetCompleteView):
+    pass
