@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'authtools',
     'braces',
     'accounts',
+    'app',
 )
 
 MIDDLEWARE_CLASSES = (
