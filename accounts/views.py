@@ -31,17 +31,14 @@ class PasswordChangeDoneView(at_views.PasswordChangeDoneView):
 
 
 class PasswordResetView(at_views.PasswordResetView):
-    success_url = reverse_lazy('accounts:password_reset_done')
     email_template_name = 'accounts/password_reset_email.html'
+    success_url = reverse_lazy('accounts:password_reset_done')
+    template_name = 'accounts/password_reset_view.html'
 
 
 class PasswordResetDoneView(at_views.PasswordResetDoneView):
-    pass
+    template_name = 'accounts/password_reset_done.html'
 
 
 class PasswordResetConfirmAndLoginView(at_views.PasswordResetConfirmAndLoginView):
-    pass
-
-
-class PasswordResetCompleteView(at_views.PasswordResetCompleteView):
-    pass
+    template_name = 'accounts/password_reset_confirm.html'
