@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views import generic
 
 from authtools import views as at_views
+from braces import views as braces_views
 
 from . import forms
 
@@ -23,7 +24,7 @@ class LogoutView(at_views.LogoutView):
     url = reverse_lazy('accounts:login')
 
 
-class ProfileView(generic.TemplateView):
+class ProfileView(braces_views.LoginRequiredMixin, generic.TemplateView):
     template_name = 'accounts/profile.html'
 
 
