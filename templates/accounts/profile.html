@@ -9,6 +9,10 @@
   <dt>{% trans 'email'|capfirst %}</dt>
   <dd>{{ user.email }}</dd>
 </dl>
+
+<a href="{% url 'accounts:profile_update' %}">
+  {% trans 'Edit Profile' %}
+</a> |
 <a href="{% url 'accounts:password_change' %}">
   {% trans 'Change password' %}
 </a>

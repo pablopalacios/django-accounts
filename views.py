@@ -8,6 +8,9 @@ from braces import views as braces_views
 from . import forms
 
 
+User = auth.get_user_model()
+
+
 class LoginView(at_views.LoginView):
     template_name = 'accounts/login.html'
     form_class = forms.AuthForm
@@ -48,3 +51,13 @@ class PasswordResetDoneView(at_views.PasswordResetDoneView):
 
 class PasswordResetConfirmAndLoginView(at_views.PasswordResetConfirmAndLoginView):
     template_name = 'accounts/password_reset_confirm.html'
+
+
+class ProfileUpdate(braces_views.LoginRequiredMixin, generic.UpdateView):
+    form_class = forms.ProfileUpdate
+    model = User
+    success_url = reverse_lazy('accounts:profile')
+    template_name = 'accounts/profile_update.html'
+
+    def get_object(self):
+        return self.request.user
