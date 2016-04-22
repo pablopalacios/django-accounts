@@ -12,11 +12,14 @@ class LoginView(at_views.LoginView):
     template_name = 'accounts/login.html'
     form_class = forms.AuthForm
 
-    def form_valid(self, form):
-        auth.login(self.request, form.get_user())
+    def set_session_expiration(self, form):
         if form.cleaned_data['remember'] is False:
             # expires at browser close
             self.request.session.set_expiry(0)
+
+    def form_valid(self, form):
+        auth.login(self.request, form.get_user())
+        self.set_session_expiration(form)
         return super().form_valid(form)
 
 
