@@ -25,9 +25,9 @@ class AuthForm(AuthenticationForm):
     remember_me = forms.BooleanField(
         required=False,
         label=_('Remember me'),
-        attrs={
+        widget=forms.CheckboxInput(attrs={
             'class': 'icheck',
-        },
+        }),
     )
 
 
