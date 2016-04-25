@@ -1,9 +1,0 @@
-{% load i18n %}
-
-<form method="post">{% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Login</button>
-</form>
-<a href="{% url 'accounts:password_reset' %}">
-  {% trans 'Recover password' %}
-</a>
