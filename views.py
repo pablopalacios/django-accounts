@@ -14,6 +14,7 @@ User = auth.get_user_model()
 class LoginView(at_views.LoginView):
     template_name = 'accounts/lte/login.html'
     form_class = forms.AuthForm
+    success_url = reverse_lazy('accounts:profile')
 
     def set_session_expiration(self, form):
         if form.cleaned_data['remember_me'] is False:
