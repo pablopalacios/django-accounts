@@ -16,7 +16,7 @@ class LoginView(at_views.LoginView):
     form_class = forms.AuthForm
 
     def set_session_expiration(self, form):
-        if form.cleaned_data['remember'] is False:
+        if form.cleaned_data['remember_me'] is False:
             # expires at browser close
             self.request.session.set_expiry(0)
 
