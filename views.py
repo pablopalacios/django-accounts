@@ -12,7 +12,7 @@ User = auth.get_user_model()
 
 
 class LoginView(at_views.LoginView):
-    template_name = 'accounts/lte/login.html'
+    template_name = 'accounts/login.html'
     form_class = forms.AuthForm
     success_url = reverse_lazy('accounts:profile')
 
@@ -32,33 +32,33 @@ class LogoutView(at_views.LogoutView):
 
 
 class ProfileView(braces_views.LoginRequiredMixin, generic.TemplateView):
-    template_name = 'accounts/lte/profile.html'
+    template_name = 'accounts/profile.html'
 
 
 class PasswordChangeView(at_views.PasswordChangeView):
     success_url = reverse_lazy('accounts:profile')
-    template_name = 'accounts/lte/password_change.html'
+    template_name = 'accounts/password_change.html'
 
 
 class PasswordResetView(at_views.PasswordResetView):
-    email_template_name = 'accounts/lte/password_reset_email.html'
+    email_template_name = 'accounts/password_reset_email.html'
     success_url = reverse_lazy('accounts:password_reset_done')
-    template_name = 'accounts/lte/password_reset_view.html'
+    template_name = 'accounts/password_reset_view.html'
 
 
 class PasswordResetDoneView(at_views.PasswordResetDoneView):
-    template_name = 'accounts/lte/password_reset_done.html'
+    template_name = 'accounts/password_reset_done.html'
 
 
 class PasswordResetConfirmAndLoginView(at_views.PasswordResetConfirmAndLoginView):
-    template_name = 'accounts/lte/password_reset_confirm.html'
+    template_name = 'accounts/password_reset_confirm.html'
 
 
 class ProfileUpdate(braces_views.LoginRequiredMixin, generic.UpdateView):
     form_class = forms.ProfileUpdate
     model = User
     success_url = reverse_lazy('accounts:profile')
-    template_name = 'accounts/lte/profile_update.html'
+    template_name = 'accounts/profile_update.html'
 
     def get_object(self):
         return self.request.user
