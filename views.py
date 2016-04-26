@@ -5,16 +5,14 @@ from django.views import generic
 from authtools import views as at_views
 from braces import views as braces_views
 
-from . import forms
+from . import forms, models
 
-
-User = auth.get_user_model()
 
 # Authentication views
 
 class LoginView(at_views.LoginView):
     template_name = 'accounts/login.html'
-    form_class = forms.AuthForm
+    form_class = forms.LoginForm
     success_url = reverse_lazy('accounts:profile')
 
     def set_session_expiration(self, form):
@@ -31,6 +29,7 @@ class LoginView(at_views.LoginView):
 class LogoutView(at_views.LogoutView):
     url = reverse_lazy('accounts:login')
 
+
 # Profile views
 
 class ProfileDetailView(braces_views.LoginRequiredMixin, generic.TemplateView):
@@ -38,8 +37,8 @@ class ProfileDetailView(braces_views.LoginRequiredMixin, generic.TemplateView):
 
 
 class ProfileUpdateView(braces_views.LoginRequiredMixin, generic.UpdateView):
-    form_class = forms.ProfileUpdate
-    model = User
+    form_class = forms.ProfileForm
+    model = models.User
     success_url = reverse_lazy('accounts:profile')
     template_name = 'accounts/profile_update.html'
 

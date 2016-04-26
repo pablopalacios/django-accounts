@@ -1,38 +1,28 @@
 from django import forms
-from django.contrib import auth
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import forms as auth_forms
 from django.utils.translation import ugettext_lazy as _
 
+from . import models
 
-User = auth.get_user_model()
 
-
-class AuthForm(AuthenticationForm):
-    """ Authentication form with remember me functionality """
+class LoginForm(auth_forms.AuthenticationForm):
+    """ Login form with remember me functionality """
 
     username = forms.CharField(
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': _('Email'),
-        }),
-        max_length=25)
+        label=_('Email'),
+        max_length=25,
+    )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={
-            'class': 'form-control',
-            'placeholder': _('Password'),
-        })
+        label=_('Password'),
     )
     remember_me = forms.BooleanField(
         required=False,
         label=_('Remember me'),
-        widget=forms.CheckboxInput(attrs={
-            'class': 'icheck',
-        }),
     )
 
 
-class ProfileUpdate(forms.ModelForm):
+class ProfileForm(forms.ModelForm):
 
     class Meta:
-        model = User
+        model = models.User
         fields = ('name', 'email')
