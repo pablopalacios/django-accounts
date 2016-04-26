@@ -32,18 +32,22 @@ class LogoutView(at_views.LogoutView):
 
 # Profile views
 
-class ProfileDetailView(braces_views.LoginRequiredMixin, generic.TemplateView):
-    template_name = 'accounts/profile.html'
-
-
-class ProfileUpdateView(braces_views.LoginRequiredMixin, generic.UpdateView):
-    form_class = forms.ProfileForm
+class ProfileViewMixin(braces_views.LoginRequiredMixin):
+    """ Mixing for dealing with request.user """
     model = models.User
-    success_url = reverse_lazy('accounts:profile')
-    template_name = 'accounts/profile_update.html'
 
     def get_object(self):
         return self.request.user
+
+
+class ProfileDetailView(ProfileViewMixin, generic.DetailView):
+    template_name = 'accounts/profile.html'
+
+
+class ProfileUpdateView(ProfileViewMixin, generic.UpdateView):
+    form_class = forms.ProfileForm
+    success_url = reverse_lazy('accounts:profile')
+    template_name = 'accounts/profile_update.html'
 
 
 class PasswordChangeView(at_views.PasswordChangeView):
